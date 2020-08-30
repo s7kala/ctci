@@ -4,17 +4,15 @@
 */
 
 #include <iostream>
-#include <cstring>
 #include <algorithm>
+#include <unordered_map>
 
-// assume eASCII strings
 // linear time
 bool checkPermutation(const std::string& s1, const std::string& s2) {
     if(s1.length() != s2.length())
         return false;
-    int charCount[256];
+    std::unordered_map<char, int> charCount;
     bool isPermutation = true;
-    memset(charCount, 0, sizeof(charCount));
     for(auto const& it : s1)
         charCount[it]++;
     for(auto const& it : s2) {

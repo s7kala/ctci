@@ -4,15 +4,13 @@
 */
 
 #include <iostream>
-#include <cstring>
+#include <unordered_map>
 
-// assume eASCII string
 // linear time
 bool isPalindromePermutation(const std::string& s) {
-    int charCount[256];
+    std::unordered_map<char, int> charCount;
     int odd = 0;
     bool ispalperm = false;
-    std::memset(charCount, 0, sizeof(charCount));
     for(auto const& it : s) {
         if(++charCount[it] % 2) odd++;
         else odd--;

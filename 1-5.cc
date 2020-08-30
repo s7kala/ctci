@@ -6,16 +6,14 @@
 
 #include <iostream>
 #include <math.h>
-#include <cstring>
+#include <unordered_map>
 
-// assume eASCII strings
 // linear time
 bool oneAway(const std::string& s1, const std::string& s2) {
     if(abs(int(s1.size() - s2.size())) > 1)
         return false;
-    int charCount[256];
+    std::unordered_map<char, int> charCount;
     bool isOneAway = true;
-    std::memset(charCount, 0, sizeof(charCount));
     for(auto const& it : s1) {
         charCount[it]++;
     }
