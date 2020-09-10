@@ -1,7 +1,6 @@
 #ifndef LL_H
 #define LL_H
 
-#include <vector>
 #include <utility>
 
 template <typename T>

@@ -43,8 +43,11 @@ void removeDups2(LinkedList<T>& ll) {
 
 int main() {
     LinkedList<int> l{1,3,4,1,7,4,5,5,2};
-    removeDups2(l);
-    for(auto it = l.head; it; it = it->next) {
-        std::cout << it->data << std::endl;
+    auto l2 = l;
+    removeDups(l);
+    removeDups2(l2);
+    for(auto it = l.head, it2 = l2.head; it && it2; it = it->next, it2 = it2->next) {
+        std::cout << it->data << ' ' << it2->data << std::endl;
     }
+
 }
