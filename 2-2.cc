@@ -6,9 +6,8 @@
 #include <iostream>
 #include "ll.h"
 
-/*  augment LinkedList struct to hold size of ll
-    alternatively, iterate ll to first get size then iterate again
-    Either way, time complexity is linear
+/*  augment LinkedList struct to hold size of ll (time: O(k))
+    alternatively, iterate ll to first get size then iterate again (linear time)
 */
 template <typename T>
 T kthToLast(const LinkedList<T>& l, int k) {
