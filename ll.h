@@ -19,6 +19,7 @@ template <typename T>
 struct LinkedList {
     Node<T>* head = nullptr;
     Node<T>* tail = nullptr;
+    int size = 0;
     LinkedList(): head{nullptr}, tail{nullptr} {}
     LinkedList(std::initializer_list<T> List) {
         for(auto const& it : List) {
@@ -43,11 +44,46 @@ struct LinkedList {
             head = end;
             tail = end;
         }
+        size++;
     }
     void pushFront(const T& t) {
         Node<T>* front = new Node<T>(t);
         front->next = head;
         head = front;
+        size++;
+    }
+    T popBack() {
+        if(size == 0) throw std::out_of_range("LinkedList empty");
+        if(size == 1) {
+            LinkedList<T> temp;
+            swapLL(*this, temp);
+            size--;
+            return temp.head->data;
+        }
+        auto curr = head;
+        for(int ctr = size - 1; ctr > 1; curr = curr->next, ctr--);
+        auto data = curr->next->data;
+        delete curr->next;
+        curr->next = nullptr;
+        tail = curr;
+        size--;
+        return data;
+    }
+    T popFront() {
+        if(size == 0) throw std::out_of_range("LinkedList empty");
+        if(size == 1) {
+            LinkedList<T> temp;
+            swapLL(*this, temp);
+            size--;
+            return temp.head->data;
+        }
+        auto newHead = head->next;
+        auto data = head->data;
+        head->next = nullptr;
+        delete head;
+        head = newHead;
+        size--;
+        return data;
     }
     ~LinkedList() {
         delete head;
