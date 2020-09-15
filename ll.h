@@ -50,6 +50,7 @@ struct LinkedList {
         Node<T>* front = new Node<T>(t);
         front->next = head;
         head = front;
+        if(!tail) tail = front;
         size++;
     }
     T popBack() {
@@ -88,7 +89,18 @@ struct LinkedList {
     ~LinkedList() {
         delete head;
     }
+    template <typename type>
+    friend std::ostream& operator<<(std::ostream& os, const LinkedList<type>&);
 };
+
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const LinkedList<T>& l) {
+    for(auto it = l.head; it; it = it->next) {
+        os << it->data << ' ';
+    }
+    os << std::endl;
+    return os;
+}
 
 template <typename T>
 void swapLL(LinkedList<T>& l1, LinkedList<T>& l2) {

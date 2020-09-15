@@ -23,6 +23,7 @@ int main() {
     auto middle = l.head;
     for(int ctr = l.size/2; ctr; ctr--, middle = middle->next);
     deleteMiddleNode(middle);
+    l.size--;
     for(auto it = l.head; it; it = it->next) {
         std::cout << it->data << std::endl;
     }
