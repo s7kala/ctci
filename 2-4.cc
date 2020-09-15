@@ -9,6 +9,7 @@
 #include "ll.h"
 
 // linear time, linear space
+// requires operator< to be overloaded for type T
 template <typename T>
 void partition(LinkedList<T>& l, int x) {
     LinkedList<T> partitioned;
